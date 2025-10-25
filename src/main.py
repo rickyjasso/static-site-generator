@@ -8,7 +8,6 @@ def main():
     basepath = "/"
     if len(sys.argv) > 1:
         basepath = sys.argv[1]
-
     module_dir = os.path.dirname(__file__)
     project_root = abspath(join(module_dir, ".."))
     static_path = join(project_root, "static")
