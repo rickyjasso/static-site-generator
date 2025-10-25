@@ -2,20 +2,27 @@ import os
 from os.path import abspath, exists, join
 import shutil
 from generate_page import extract_title, generate_page, generate_pages_recursive
+import sys
+
 def main():
+    basepath = "/"
+    if len(sys.argv) > 1:
+        basepath = sys.argv[1]
+
     module_dir = os.path.dirname(__file__)
     project_root = abspath(join(module_dir, ".."))
     static_path = join(project_root, "static")
-    public_path = join(project_root, "public")
-    copy_directory_to_destination(static_path, public_path)
+    #public_path = join(project_root, "public")
+    docs_path = join(project_root, "docs")
+    copy_directory_to_destination(static_path, docs_path)
     
     content_path = join(project_root, "content")
     md_path = join(content_path, "index.md")
     t_path = join(project_root, "template.html")
-    destination = join(public_path, "index.html")
+    destination = join(docs_path, "index.html")
     #generate_page(md_path, t_path, destination)
     
-    generate_pages_recursive(content_path, t_path, public_path)
+    generate_pages_recursive(content_path, t_path, docs_path, basepath)
 
     
 def copy_directory_to_destination(static_path, public_path):
