@@ -1,7 +1,7 @@
 import os
 from os.path import abspath, exists, join
 import shutil
-from generate_page import extract_title, generate_page, generate_pages_recursive
+from generate_page import extract_title, generate_pages_recursive
 import sys
 
 def main():
@@ -17,9 +17,9 @@ def main():
     copy_directory_to_destination(static_path, docs_path)
     
     content_path = join(project_root, "content")
-    md_path = join(content_path, "index.md")
+    #md_path = join(content_path, "index.md")
     t_path = join(project_root, "template.html")
-    destination = join(docs_path, "index.html")
+    #destination = join(docs_path, "index.html")
     #generate_page(md_path, t_path, destination)
     
     generate_pages_recursive(content_path, t_path, docs_path, basepath)
