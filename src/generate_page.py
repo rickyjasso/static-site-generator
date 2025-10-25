@@ -25,7 +25,6 @@ def generate_page(from_path, template_path, dest_path):
 
     html_page = t_content.replace("{{ Title }}", title)
     html_page = html_page.replace("{{ Content }}", html_string)
-    
     file_dir = os.path.abspath(os.path.join(dest_path, ".."))
     if not os.path.exists(file_dir):
         os.makedirs(file_dir)
@@ -34,4 +33,14 @@ def generate_page(from_path, template_path, dest_path):
     print(f"File written succesfully to: {dest_path}")
 
 def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
-    pass
+    entries = os.listdir(dir_path_content)
+    for entry in entries:
+        entry_path = os.path.join(dir_path_content, entry)
+        if os.path.isfile(entry_path):
+            filename = entry[:-3]
+            filename += ".html"
+            dest_path = os.path.abspath(os.path.join(dest_dir_path, filename))
+            generate_page(entry_path, template_path, dest_path)
+        if os.path.isdir(entry_path):
+            dest_path = os.path.abspath(os.path.join(dest_dir_path, entry))
+            generate_pages_recursive(entry_path, template_path, dest_path)

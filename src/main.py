@@ -7,7 +7,7 @@ def main():
     project_root = abspath(join(module_dir, ".."))
     static_path = join(project_root, "static")
     public_path = join(project_root, "public")
-    #copy_directory_to_destination(static_path, public_path)
+    copy_directory_to_destination(static_path, public_path)
     
     content_path = join(project_root, "content")
     md_path = join(content_path, "index.md")
@@ -15,7 +15,7 @@ def main():
     destination = join(public_path, "index.html")
     #generate_page(md_path, t_path, destination)
     
-    generate_pages_recursive(content_path, t_path, destination)
+    generate_pages_recursive(content_path, t_path, public_path)
 
     
 def copy_directory_to_destination(static_path, public_path):
